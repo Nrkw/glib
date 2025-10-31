@@ -1,0 +1,28 @@
+/build/
+/dist/
+/out/
+/bin/
+/obj/
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.stackdump
+
+# CMake/Make aux
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile.user
+
+# VS/VSCode
+.vs/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

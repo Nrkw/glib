@@ -1,0 +1,29 @@
+# コンパイラとフラグ
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -I./ -I./shader -I./buffer -I./renderer -I./window -I./image -I./load -IC:\OpenCV\opencv\sources\build\install\include
+LDFLAGS = -mwindows -LC:\OpenCV\opencv\sources\build\install\x64\mingw\lib -lopengl32 -lgdi32 -luser32 -lopencv_core4120 -lopencv_imgproc4120 -lopencv_imgcodecs4120 -lopencv_highgui4120
+
+# ソースディレクトリとファイル
+SRCDIR = .
+SRC = $(wildcard $(SRCDIR)/*.cpp $(SRCDIR)/renderer/*.cpp $(SRCDIR)/window/*.cpp $(SRCDIR)/image/*.cpp $(SRCDIR)/shader/*.cpp $(SRCDIR)/buffer/*.cpp $(SRCDIR)/load/*.cpp)
+
+# オブジェクトファイル
+OBJ = $(SRC:.cpp=.o)
+
+# 実行ファイル名
+TARGET = app
+
+# デフォルトターゲット
+all: $(TARGET)
+
+# 実行ファイルを生成
+$(TARGET): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJ) $(LDFLAGS)
+
+# 個々のオブジェクトファイルを生成
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# クリーンアップ
+clean:
+	rm -f $(OBJ) $(TARGET)
